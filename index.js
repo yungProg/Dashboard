@@ -18,6 +18,32 @@ const logoWithText = `<svg width="145" height="40" viewBox="0 0 145 40" fill="no
 <path d="M65.7192 11.2671V14.61H58.0306V19.3543H64.4335V22.71H58.0306V30H53.6592V11.2671H65.7192Z" fill="#696FFB"/>
 </svg>
 `
+const data = [
+  {
+    title: "Total income",
+    amount: "$ 33,328.12",
+    percentage: "12.24%",
+    up: true,
+  },
+  {
+    title: "Profit",
+    amount: "$ 8,583.09",
+    percentage: "2.63%",
+    up: false,
+  },
+  {
+    title: "Total views",
+    amount: "52,234.32",
+    percentage: "1.46%",
+    up: true,
+  },
+  {
+    title: "Conversion rate",
+    amount: "6.12%",
+    percentage: "8.75%",
+    up: true,
+  },
+]
 
 let logoOnly = false
 
@@ -27,8 +53,26 @@ const toggleNav = () => {
   navDes.forEach(item => {
     item.classList.toggle("hide")
   })
-  logoOnly ? logoWrapper.innerHTML = logoWithText : logoWrapper.innerHTML = logo
+  if (logoOnly) {
+    logoWrapper.innerHTML = logoWithText
+    document.querySelectorAll(".aside-sec").forEach(item => item.style.alignItems = "start")
+  } else {
+    logoWrapper.innerHTML = logo
+    document.querySelectorAll(".aside-sec").forEach(item => item.style.alignItems = "center")
+  }
   logoWrapper.classList.toggle("logo")
   document.querySelector("#toggle-btn svg").classList.toggle("arrow-rotate")
   logoOnly = !logoOnly
 } 
+
+const cardTemplate = document.getElementById("card-template")
+const cardsContainer = document.querySelector(".cards")
+
+data.forEach(item => {
+  let cloneTemp = cardTemplate.content.cloneNode(true)
+  cloneTemp.getElementById("card-title").textContent = item.title
+  cloneTemp.getElementById("amount").textContent = item.amount
+  cloneTemp.getElementById("percentage").textContent = item.percentage
+  item.up ? cloneTemp.getElementById("percentage").style.backgroundColor = "#2bd62b" : cloneTemp.getElementById("percentage").style.backgroundColor = "#f47171"
+  cardsContainer.append(cloneTemp)
+})
