@@ -76,3 +76,88 @@ data.forEach(item => {
   item.up ? cloneTemp.getElementById("percentage").style.backgroundColor = "#2bd62b" : cloneTemp.getElementById("percentage").style.backgroundColor = "#f47171"
   cardsContainer.append(cloneTemp)
 })
+
+const socCtx = document.getElementById("soc").getContext("2d")
+
+const soc = new Chart(socCtx, {
+  type: "line",
+  data: {
+    type: "line",
+    labels: ["Apr 23", "May 23", "Jun 23", "Jul 23", "Aug 23", "Sep 23", "Oct 23", "Nov 23", "Dec 23", "Jan 24"],
+    datasets: [
+      {
+        label: "Sales Overview",
+        data: [10127, 12783, 19009, 17653, 19899, 11970, 18867, 19892, 13878, 14588],
+        backgroundColor: "aquamarine",
+        borderColor: "brown",
+        tension: 0.5,
+        borderWidth: 1,
+      }, 
+      {
+        label: "Sales Overview",
+        data: [10127, 12783, 19009, 1753, 19899, 11970, 18867, 19892, 3878, 14588],
+        backgroundColor: "orange",
+        borderColor: "blue",
+        tension: 0.5,
+        borderWidth: 1,
+      }
+      ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        max: 30000,
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return "$" + value / 1000 + "k"
+          }
+        }
+      }
+    }
+  }
+}) 
+
+const sbrCtx = document.getElementById("sbr").getContext("2d");
+const sbr = new Chart(sbrCtx, {
+  type: "radar",
+  data: {
+    type: "radar",
+    labels: ["Africa", "Asia", "Middle East", "Europe", "Pacific", "Antartica"],
+    datasets: [
+      {
+        label: "Sales by region",
+        data: [21525, 31527, 21000, 65728, 83632, 10220],
+        backgroundColor: "transparent",
+        borderColor: "blue",
+        borderWidth: 1,
+      }
+      ]
+  },
+}) 
+
+const ruCtx = document.getElementById("ru").getContext("2d")
+
+const ru = new Chart (ruCtx, {
+  type: "doughnut",
+  data: {
+    type: "doughnut",
+    labels: ["Registered Users", "Users"],
+    datasets: [{
+      data: [2167, 12420],
+      backgroundColor: ["red", "yellow"],
+      borderWidth: 1,
+      width: 10,
+    }]
+  },
+  options:{
+    circumference: 180,
+    rotation: -90,
+    cutoutPercentage: 88,
+    label: {
+      display: false
+    }
+  }
+  
+}) 

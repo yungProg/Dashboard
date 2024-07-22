@@ -18,7 +18,8 @@ html, body {
 
 #aside {
   border-right: 1px solid black;
-  min-height: 100dvh;
+  height: 100dvh;
+  max-height: max-content;
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -102,7 +103,7 @@ html, body {
 .cards {
   padding: 8px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 250px));
+  grid-template-columns: repeat(auto-fill, minmax(230px, auto));
   gap: 8px;
 }
 
