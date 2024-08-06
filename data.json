@@ -1,0 +1,25 @@
+{
+    "salesOverview": {
+        "April 2023": 24364,
+        "May 2023": 20594,
+        "June 2023": 23000,
+        "July 2023": 23895,
+        "Aug 2023": 28451,
+        "Sep 2023": 26777,
+        "Oct 2023": 26900,
+        "Nov 2023": 29974,
+        "Dec 2023": 27330
+    },
+    "salesByRegion": {
+        "Africa": 1591,
+        "America": 1762,
+        "Asia": 2201,
+        "Europe": 2865,
+        "Middle East": 1749,
+        "Pacific": 2475
+    },
+    "registeredUsers": {
+        "premiumUsers": 2804,
+        "basicUsers": 397
+    }
+}

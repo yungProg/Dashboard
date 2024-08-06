@@ -1,10 +1,4 @@
-const logo = `<svg width="145" height="40" viewBox="0 0 145 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="20.6875" cy="20" r="20" fill="#696FFB"/>
-<ellipse cx="26.8414" cy="26.1539" rx="11.2821" ry="11.2821" fill="#B8BBFF"/>
-<ellipse cx="14.5338" cy="13.8461" rx="11.2821" ry="11.2821" fill="#B8BBFF"/>
-<ellipse cx="20.6871" cy="20" rx="8.33333" ry="8.33333" fill="white"/>`
-
-const logoWithText = `<svg width="145" height="40" viewBox="0 0 145 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+const fullLogo = `<svg width="auto" height="40" viewBox="0 0 145 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="20.6875" cy="20" r="20" fill="#696FFB"/>
 <ellipse cx="26.8414" cy="26.1539" rx="11.2821" ry="11.2821" fill="#B8BBFF"/>
 <ellipse cx="14.5338" cy="13.8461" rx="11.2821" ry="11.2821" fill="#B8BBFF"/>
@@ -18,61 +12,37 @@ const logoWithText = `<svg width="145" height="40" viewBox="0 0 145 40" fill="no
 <path d="M65.7192 11.2671V14.61H58.0306V19.3543H64.4335V22.71H58.0306V30H53.6592V11.2671H65.7192Z" fill="#696FFB"/>
 </svg>
 `
-const data = [
-  {
-    title: "Total income",
-    amount: "$ 33,328.12",
-    percentage: "12.24%",
-    up: true,
-  },
-  {
-    title: "Profit",
-    amount: "$ 8,583.09",
-    percentage: "2.63%",
-    up: false,
-  },
-  {
-    title: "Total views",
-    amount: "52,234.32",
-    percentage: "1.46%",
-    up: true,
-  },
-  {
-    title: "Conversion rate",
-    amount: "6.12%",
-    percentage: "8.75%",
-    up: true,
-  },
-]
+const shortLogo = `<svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20.6875" cy="20" r="20" fill="#696FFB"/>
+            <ellipse cx="26.8414" cy="26.1539" rx="11.2821" ry="11.2821" fill="#B8BBFF"/>
+            <ellipse cx="14.5338" cy="13.8461" rx="11.2821" ry="11.2821" fill="#B8BBFF"/>
+            <ellipse cx="20.6871" cy="20" rx="8.33333" ry="8.33333" fill="white"/>
+          </svg>`
 
-let logoOnly = false
+const toggleCollapseBtn = document.querySelector(".toggle-collapse")
+const aside = document.querySelector(".aside")
+const asideSection = document.querySelectorAll(".aside-section")
+const description = document.querySelectorAll(".description")
+const logoContainer = document.querySelector(".logo")
+const main = document.querySelector(".main")
+let asideCollapsed = true
 
-const toggleNav = () => {
-  const navDes = document.querySelectorAll(".nav-btn-des") 
-  let logoWrapper = document.getElementById("logo")
-  navDes.forEach(item => {
-    item.classList.toggle("hide")
-  })
-  if (logoOnly) {
-    logoWrapper.innerHTML = logoWithText
-    document.querySelectorAll(".aside-sec").forEach(item => item.style.alignItems = "start")
+toggleCollapseBtn.addEventListener("click", () => {
+  if(asideCollapsed) {
+    logoContainer.innerHTML = fullLogo
+    aside.style.width = "110px";
+    asideSection.forEach(section => {
+      section.style.alignItems = "flex-start"
+    })
+    main.style.marginLeft = "110px"
   } else {
-    logoWrapper.innerHTML = logo
-    document.querySelectorAll(".aside-sec").forEach(item => item.style.alignItems = "center")
+    logoContainer.innerHTML = shortLogo
+    aside.style.width = "70px";
+    asideSection.forEach(section => {
+      section.style.alignItems = "center"
+    })
+    main.style.marginLeft = "70px"
   }
-  logoWrapper.classList.toggle("logo")
-  document.querySelector("#toggle-btn svg").classList.toggle("arrow-rotate")
-  logoOnly = !logoOnly
-} 
-
-const cardTemplate = document.getElementById("card-template")
-const cardsContainer = document.querySelector(".cards")
-
-data.forEach(item => {
-  let cloneTemp = cardTemplate.content.cloneNode(true)
-  cloneTemp.getElementById("card-title").textContent = item.title
-  cloneTemp.getElementById("amount").textContent = item.amount
-  cloneTemp.getElementById("percentage").textContent = item.percentage
-  item.up ? cloneTemp.getElementById("percentage").style.backgroundColor = "#2bd62b" : cloneTemp.getElementById("percentage").style.backgroundColor = "#f47171"
-  cardsContainer.append(cloneTemp)
+  description.forEach(item => item.classList.toggle("display-none"))
+  asideCollapsed = !asideCollapsed
 })
