@@ -25,6 +25,7 @@ const asideSection = document.querySelectorAll(".aside-section")
 const description = document.querySelectorAll(".description")
 const logoContainer = document.querySelector(".logo")
 const main = document.querySelector(".main")
+const dataCardTemplate = document.getElementById("data-card-template")
 let asideCollapsed = true
 
 toggleCollapseBtn.addEventListener("click", () => {
@@ -46,3 +47,12 @@ toggleCollapseBtn.addEventListener("click", () => {
   description.forEach(item => item.classList.toggle("display-none"))
   asideCollapsed = !asideCollapsed
 })
+
+async function kl() {
+  const request = await fetch("https://opentdb.com/api.php?amount=10");
+  const response = await request.json();
+  console.log(response);
+  
+}
+
+kl()
